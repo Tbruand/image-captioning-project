@@ -1,5 +1,11 @@
+matplotlib
+seaborn
+pandas
 numpy
+networkx
+wordcloud
 pillow
+opencv-python
 tqdm
 torch
 torchvision
