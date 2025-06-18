@@ -1,0 +1,69 @@
+# 🐍 Environnements virtuels
+venv/
+.env
+.env.*
+
+# 🧪 Fichiers de tests / coverage
+__pycache__/
+*.py[cod]
+*.log
+*.coverage
+.coverage.*
+.cache/
+pytest_cache/
+tests/__pycache__/
+
+# 📦 Dépendances
+*.egg-info/
+dist/
+build/
+
+# 🤖 Modèles
+models/*
+!models/README.md
+*.pt
+*.pth
+*.onnx
+*.joblib
+*.sav
+*.h5
+*.ckpt
+*.npy
+*.npz
+
+# 📊 Données
+data/*
+!data/README.md
+
+# 📓 Jupyter notebooks (optionnel)
+.ipynb_checkpoints/
+
+# 📂 Fichiers de sortie / logs
+outputs/
+logs/
+checkpoints/
+*.csv
+*.tsv
+
+# 🧪 MLflow
+mlflow/mlruns/
+!mlflow/README.md
+
+# ⚙️ Config / secrets
+.DS_Store
+Thumbs.db
+secrets.env
+*.token
+*.key
+*.pem
+
+# 💡 IDE
+.vscode/
+.idea/
+
+# 🌐 Caches diverses
+~/.cache/huggingface/
+.gradio/
+
+# 🚀 Déploiement auto
+site/
