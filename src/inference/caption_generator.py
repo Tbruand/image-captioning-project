@@ -14,8 +14,8 @@ import torch.nn.functional as F
 class CaptionGenerator:
     def __init__(self, decoder_path: str, tokenizer_path: str, device=None):
         self.device = device or torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-        self.tokenizer = load_tokenizer(tokenizer_path)
+        tokenizer_full_path = project_root / tokenizer_path
+        self.tokenizer = load_tokenizer(str(tokenizer_full_path))
 
         self.decoder = DecoderWithAttention(
             attention_dim=256,
@@ -24,7 +24,8 @@ class CaptionGenerator:
             vocab_size=len(self.tokenizer.word2idx),
             dropout=0.5
         )
-        self.decoder.load_state_dict(torch.load(decoder_path, map_location=self.device))
+        decoder_full_path = project_root / decoder_path
+        self.decoder.load_state_dict(torch.load(decoder_full_path, map_location=self.device))
         self.decoder = self.decoder.to(self.device).eval()
 
         self.encoder = Encoder().to(self.device).eval()
