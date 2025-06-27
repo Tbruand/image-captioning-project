@@ -8,6 +8,7 @@ sys.path.append(str(project_root))
 from src.model.decoder import DecoderWithAttention
 from src.model.encoder import Encoder
 from src.data.tokenizer import load_tokenizer
+from src.translation.translator import translate_caption
 import torch.nn.functional as F
 
 
@@ -34,7 +35,7 @@ class CaptionGenerator:
         features = self.encoder(image).unsqueeze(0).to(self.device)
         return features
 
-    def generate(self, image: Image.Image, max_len: int = 20):
+    def generate(self, image: Image.Image, max_len: int = 20, translate: bool = False):
         features = self.preprocess(image)
         decoder = self.decoder
         tokenizer = self.tokenizer
@@ -75,4 +76,9 @@ class CaptionGenerator:
             if idx not in {tokenizer.start_token_id, tokenizer.end_token_id, tokenizer.pad_token_id}
         ]
 
-        return " ".join(words), filtered_conf
+        caption = " ".join(words)
+
+        if translate:
+            caption = translate_caption(caption)
+
+        return caption, filtered_conf
