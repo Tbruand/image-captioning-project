@@ -17,12 +17,12 @@ class InferencePipeline:
         image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
         return image
 
-    def predict(self, image_bytes: bytes):
+    def predict(self, image_bytes: bytes, translate: bool = False):
         # 1. Chargement et prétraitement
         image = self.preprocess(image_bytes)
 
-        # 2. Génération de la légende
-        caption, confidences = self.captioner.generate(image)
+        # 2. Génération de la légende (en anglais ou traduite)
+        caption, confidences = self.captioner.generate(image, translate=translate)
 
         # 3. Retour de la légende + score moyen
         return {
