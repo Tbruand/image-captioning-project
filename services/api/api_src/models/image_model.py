@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from typing import Optional
+from enum import Enum
 
 class ImagePredictionRequest(BaseModel):
     nom_fichier: str
@@ -16,4 +17,8 @@ class ImagePredictionResponse(BaseModel):
 class FeedbackRequest(BaseModel):
     id_image: int
     feedback: int  # par exemple 1 à 4, la note donnée par l'utilisateur
+
+class LangEnum(str, Enum):
+    fr = "fr"
+    en = "en"
 
