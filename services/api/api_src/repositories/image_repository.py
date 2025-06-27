@@ -45,3 +45,33 @@ class ImageRepository:
         except Exception as e:
             print(f"Erreur lors de la mise à jour du feedback : {e}")
             return False
+        
+    def save_prediction(
+        self,
+        user_id: int,
+        filename: str,
+        caption: str,
+        confidences: list[float],
+        monitor_pred: int
+    ) -> tuple[int, int]:
+        """
+        Sauvegarde une image et sa prédiction associée.
+        Retourne (id_image, id_prediction)
+        """
+        # 1. Ajouter l’image
+        image_id = self.add_image(nom_fichier=filename, id_user=user_id)
+        if image_id is None:
+            raise Exception("Erreur lors de l'ajout de l'image en base.")
+
+        # 2. Ajouter la prédiction
+        confidence_avg = round(sum(confidences) / len(confidences), 4)
+        prediction_id = self.add_prediction(
+            resultat_pred=caption,
+            confiance_pred=confidence_avg,
+            id_image=image_id,
+            monitor_pred=monitor_pred
+        )
+        if prediction_id is None:
+            raise Exception("Erreur lors de l'ajout de la prédiction en base.")
+
+        return image_id, prediction_id
