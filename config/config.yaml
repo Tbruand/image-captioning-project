@@ -1,0 +1,24 @@
+# Configuration pour l'entraînement
+
+# 📁 Chemins
+features_dir: "data/processed/features_resnet_global"
+captions_file: "data/raw/Flickr8k_text/Flickr8k.token.txt"
+tokenizer_path: "data/vocab/tokenizer.pkl"
+captions_dict_path: "data/processed/aligned_captions.json"
+
+# ⚙️ Paramètres du modèle
+model:
+  attention_dim: 256
+  embed_dim: 256
+  decoder_dim: 512
+  dropout: 0.5
+
+# 🏋️ Paramètres d'entraînement
+training:
+  lr: 0.0001
+  batch_size: 128
+  epochs: 200
+  patience: 4
+
+# 🐛 Mode debug (True pour rapide, False pour full training)
+debug: false

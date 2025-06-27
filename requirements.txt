@@ -9,3 +9,14 @@ opencv-python
 tqdm
 torch
 torchvision
+nltk
+rouge-score
+rouge
+PyYAML
+scikit-learn
+tensorboard
+fastapi[all]
+passlib[bcrypt]
+python-jose[cryptography]
+transformers
+sentencepiece
